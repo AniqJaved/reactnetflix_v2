@@ -8,8 +8,9 @@ const Featured = (props) => {
     <div className="featured">
         <img src="https://images.pexels.com/photos/3406020/pexels-photo-3406020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
         <div className="featuredContainer">
-            <div className='category'>
-                <span>{props.type == 'movie' ? "Movies" : "Series"}</span>
+            {props.type && (
+                <div className='category'>
+                <span>{props.type === 'movie' ? "Movies" : "Series"}</span>
                 <select className="genre">
                     <option value="Genre">Genre</option>
                     <option value="Animation">Animation</option>
@@ -23,6 +24,7 @@ const Featured = (props) => {
                     <option value="Romance">Romance</option>
                 </select>
             </div>
+            )}
             <div className="info">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Ozark_TV_series_logo.png?20190409070319" alt="" />
             </div>

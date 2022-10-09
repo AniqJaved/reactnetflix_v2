@@ -1,5 +1,6 @@
 import {  ArrowDropDown, Notifications, Search } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
+import {Link} from "react-router-dom";
 import "./navbar.scss"
 const Navbar = () => {
 
@@ -15,13 +16,19 @@ const Navbar = () => {
 
     return (
     <>
-    <div className={offset == 0 ? "navbar" : "navbar scrolled" }>
+    <div className={offset === 0 ? "navbar" : "navbar scrolled" }>
         <div className="container">
             <div className="left">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Hey" width={"20%"} className="span"/>
+                <Link to="/" className='link'>
                 <span>Home</span>
-                <span>Series</span>
-                <span>Movies</span>
+                </Link>
+                <Link to="/series" className='link'>
+                    <span>Series</span>
+                </Link>
+                <Link to="/movies" className='link'>
+                    <span>Movies</span>
+                </Link>
                 <span>My List</span>
             </div>
             <div className='right'>
