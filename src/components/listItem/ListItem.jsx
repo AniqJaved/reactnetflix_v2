@@ -1,5 +1,6 @@
 import { Add, PlayArrow, ThumbDownAltOutlined, ThumbUpAltOutlined } from '@mui/icons-material'
 import React, { useState,useEffect } from 'react'
+import { Link,BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import axios from "axios"
 import './listItem.scss'
 
@@ -17,7 +18,6 @@ const ListItem = ({index, item}) => {
           },
         }
         );
-
         setMovie(res.data);
       }
       catch(err){
@@ -28,38 +28,43 @@ const ListItem = ({index, item}) => {
   }, [item]);   //item here means that whenever the item is changed then we are going to fire the useEffect.
   
   return (
+    
     <>
-    <div 
-    className="listItem"
-    style={{left: isHovered && index * 225 - 50 + index * 2.25}}
-    onMouseEnter={()=>setIsHovered(true)}
-    onMouseLeave={()=>setIsHovered(false)}
-    >
-        <img src={movie.image} alt="" />
-        {isHovered &&
-        <>
-        <iframe src={movie.trailer} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        <div className="itemInfo">
-          <div className="icons">
-            <PlayArrow className='icon'/>
-            <Add className='icon'/>
-            <ThumbUpAltOutlined className='icon'/>
-            <ThumbDownAltOutlined className='icon'/>
+
+        <Link to={"/watch"} state={{ movie: movie }}>  
+          <div 
+          className="listItem"
+          style={{left: isHovered && index * 225 - 50 + index * 2.25}}
+          onMouseEnter={()=>setIsHovered(true)}
+          onMouseLeave={()=>setIsHovered(false)}
+          > 
+            <img src={movie.img} alt="" />
+            {isHovered &&
+            <>
+            <iframe src={movie.trailer} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <div className="itemInfo">
+              <div className="icons">
+                <PlayArrow className='icon'/>
+                <Add className='icon'/>
+                <ThumbUpAltOutlined className='icon'/>
+                <ThumbDownAltOutlined className='icon'/>
+              </div>
+              <div className="itemInfoTop">
+                <span>{movie.duration}</span>
+                <span className='limit'>{movie.limit}+</span>
+                <span>{movie.year}</span>
+              </div>
+              <div className="desc">
+                {movie.desc}
+              </div>
+              <div className="genre">{movie.genre}</div>
+            </div> 
+            </>
+            }
           </div>
-          <div className="itemInfoTop">
-            <span>{movie.duration}</span>
-            <span className='limit'>{movie.limit}+</span>
-            <span>{movie.year}</span>
-          </div>
-          <div className="desc">
-            {movie.desc}
-          </div>
-          <div className="genre">{movie.genre}</div>
-        </div> 
-        </>
-        }
-    </div>
+        </Link>
     </>
+    
     
   )
 }

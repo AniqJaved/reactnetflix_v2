@@ -25,11 +25,11 @@
     }
 
     .featuredContainer{
-        position: absolute;
+        position: relative;
         display: flex;
         flex-direction: column;
-        top: 256px;
-        left: 128px;
+        bottom: 350px;
+        left: 102px;
         .category{
             font-size: 30px;
             font-weight: 500;
